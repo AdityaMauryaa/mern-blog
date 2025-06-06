@@ -7,11 +7,21 @@ const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
-     toast.success('Account creation is not allowed for now.Only user credentials can be used to get logged in!!')
- 
+    e.preventDefault();
+    const {data}=await axios.post('/api/admin/register',{name,password,email})
+    try {
+      if(data.success){
+        toast.success(data.message);
+        navigate('/admin/login');
+      }else{
+
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+     
   }
 
   return (

@@ -1,16 +1,22 @@
 import jwt from 'jsonwebtoken';
 import Blog from '../models/blog.js';
+import User from '../models/user.js'
 import dotenv from 'dotenv'
 import Comment from '../models/comment.js'
+import bcrypt from 'bcryptjs';
 export const adminLogin = async (req, res) => {
     try{
         const {email, password} = req.body;
 
         if(!email || !password){
             return res.status(400).json({success:false,message: "Please provide all fields"});
-        }else if(email !== process.env.ADMIN_EMAIL || password !==process.env.ADMIN_PASSWORD){
-            return res.status(401).json({success:false,message: "Invalid credentials"});
-        }else{
+        }
+        const user=await User.findOne({email});
+        if(!user){
+            return res.status(401).json({success:false,message: "User doesn't exist,please regiter instead"});
+        }
+        const check=await bcrypt.compare(password,user.password);
+        if(check){
             const token=jwt.sign(
                 {email},
                 process.env.JWT_SECRET,
@@ -22,8 +28,17 @@ export const adminLogin = async (req, res) => {
                 token: token
             });
         }
+        else{
+            return res.json({
+                success: false,
+                message: "Invalid credentials",
+            });
+        }
     }catch(error){
-        console.error('Error in login:', error);
+        return res.json({
+                success: false,
+                message: "Login attempt failed",
+            });
     }
 }
 

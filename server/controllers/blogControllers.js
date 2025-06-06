@@ -52,7 +52,7 @@ export const addblog=async(req,res)=>{
 
 export const getAllBlogs = async (req, res) => {
     try {
-      const blogs=await Blog.find({isPublished:true});
+      const blogs=await Blog.find({isPublished:true}).sort({createdAt:-1});
       res.status(200).json({
           success: true,
           message: "Blogs fetched successfully",
