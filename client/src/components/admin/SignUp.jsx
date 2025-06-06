@@ -25,9 +25,11 @@ const SignUp = () => {
   }
 
   return (
+
     <div className='flex items-center justify-center h-screen  bg-gradient-to-br from-indigo-900 to bg-red-300'>
       <div className='w-full max-w-sm p-6 max-md:m-6 border bg-gray-900 border-primary/30 shadow-xl shadow-primary/30 rounded-lg'>
         <div className='flex flex-col items-center justify-center'>
+      <div onClick={()=>navigate('/')} className='cursor-pointer text-blue-500  rounded-full px-3'>Return to homepage</div>
           <div className='w-full py-6 text-center'>
             <h1 className='text-4xl font-bold mb-2 text-white'>
               Create Account

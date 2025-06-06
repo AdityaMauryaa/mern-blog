@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import {parse} from 'marked'
 import 'highlight.js/styles/github.css';
 const AddBlog = () => {
-  const {axios,fetchBlogs}=useAppContext();
+  const {axios,fetchBlogs,globalName}=useAppContext();
   const [isAdding,setIsAdding]=useState(false);
   const [loading,setLoading]=useState(false);
   const [image , setImage]=useState(false);
@@ -45,6 +45,7 @@ const onSubmitHandler=async (e)=>{
     const blog={
       title,
       subTitle,
+      author:globalName,
       description:quillRef.current.root.innerHTML,
       category,isPublished
     }

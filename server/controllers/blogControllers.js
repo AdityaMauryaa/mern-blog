@@ -6,7 +6,7 @@ import main from '../config/gemini.js';
 
 export const addblog=async(req,res)=>{
     try {
-        const {title,description,category,isPublished,subTitle}=JSON.parse(req.body.blog);
+        const {title,description,category,isPublished,subTitle,author}=JSON.parse(req.body.blog);
         const imageFile=req.file;
         if(!title || !description || !category || !isPublished || !imageFile){
             return res.status(400).json({success:false,message:"Please provide all fields"});
@@ -28,6 +28,7 @@ export const addblog=async(req,res)=>{
         const image=optimizedImageUrl;
         await Blog.create({
             title,
+            author,
             subTitle,
             description,
             category,
@@ -47,9 +48,6 @@ export const addblog=async(req,res)=>{
         });
     }
 }
-
-
-
 export const getAllBlogs = async (req, res) => {
     try {
       const blogs=await Blog.find({isPublished:true}).sort({createdAt:-1});

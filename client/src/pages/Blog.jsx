@@ -26,6 +26,7 @@ const Blog = () => {
     } catch (error) {
       toast.error(error.message)
     }
+
   }
   const fetchComments = async () => {
     try {
@@ -74,7 +75,7 @@ const Blog = () => {
         text-gray-800'>{data.title}</h1>
         <h2 className='my-5 max-w-1g truncate mx-auto'>{data.subTitle}</h2>
         <p className='inline-block py-1 px-4 rounded-full
-         mb-6 border text-sm border-primary/35 bg-primary/5 font-medium text-primary'>Author Name</p>
+         mb-6 border text-sm border-primary/35 bg-primary/5 font-medium text-primary'>{data.author?data.author:'Unknown'}</p>
       </div>
 
       <div className='mx-5 max-w-6xl md:mx-auto my-10 '>

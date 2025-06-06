@@ -12,6 +12,7 @@ export const AppProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [blogs, setBlogs] = useState([]);
     const [input, setInput] = useState('');
+    const [globalName, setGlobalName] = useState('');
 
     const fetchBlogs = async () => {
         try {
@@ -35,6 +36,8 @@ export const AppProvider = ({ children }) => {
     }, []);
 
     const value = {
+        globalName,
+        setGlobalName,
         axios,
         navigate,
         token,

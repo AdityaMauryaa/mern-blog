@@ -4,7 +4,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAppContext } from '../../context/AppContext';
 const Login = () => {
-  const {axios,setToken,navigate}=useAppContext();
+  const {axios,setToken,navigate,setGlobalName}=useAppContext();
   const  [email, setEmail] = useState('');
   const  [password, setPassword] = useState('');
   const handleSubmit = async (e) => {
@@ -13,6 +13,7 @@ const Login = () => {
       const {data}=await axios.post('/api/admin/login',{email,password})
       if(data.success){
         setToken(data.token)
+        setGlobalName(data.name)
         localStorage.setItem('token',data.token)
         axios.defaults.headers.common['Authorization']=data.token;
         navigate('/admin')
@@ -26,9 +27,11 @@ const Login = () => {
   }
   return (
     <div className={'flex items-center justify-center h-screen bg-gradient-to-br from-indigo-900 to bg-red-300' }>
+      
       <div className='w-full max-w-sm p-6 max-md:m-6 border bg-gray-900 border-primary/30 shadow-xl shadow-primary/30 rounded-lg'>
           <div className='flex flex-col items-center justify-center'> 
-            <div className='w-full py-6 text-center'>
+      <div onClick={()=>navigate('/')} className='cursor-pointer text-blue-500  rounded-full px-3'>Return to homepage</div>
+            <div className='w-full py-4 text-center'>
               <h1 className='text-4xl font-bold mb-2 text-white'>
                 Login</h1>
               <p className='font-light text-indigo-400'>Enter your credentials to access the admin panel</p>
@@ -72,6 +75,7 @@ const Login = () => {
                 Register
               </span> here
             </p>
+            
           </div>
           </div>
       </div>

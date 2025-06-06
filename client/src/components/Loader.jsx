@@ -1,5 +1,4 @@
 import React from 'react'
-
 const Loader = () => {
   return (
     <div className='flex flex-col items-center justify-center h-screen'>
@@ -7,9 +6,7 @@ const Loader = () => {
             
         </div>
         Loading...
-        
     </div>
   )
 }
-
 export default Loader
