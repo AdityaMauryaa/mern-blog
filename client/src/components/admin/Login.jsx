@@ -13,6 +13,7 @@ const Login = () => {
       const {data}=await axios.post('/api/admin/login',{email,password})
       if(data.success){
         setToken(data.token)
+        localStorage.setItem('globalName', data.name);
         setGlobalName(data.name)
         localStorage.setItem('token',data.token)
         axios.defaults.headers.common['Authorization']=data.token;

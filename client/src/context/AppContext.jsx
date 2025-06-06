@@ -12,7 +12,7 @@ export const AppProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [blogs, setBlogs] = useState([]);
     const [input, setInput] = useState('');
-    const [globalName, setGlobalName] = useState('');
+    const [globalName, setGlobalName] = useState(() => localStorage.getItem('globalName') || '');
 
     const fetchBlogs = async () => {
         try {
@@ -30,7 +30,23 @@ export const AppProvider = ({ children }) => {
             axios.defaults.headers.common['Authorization'] = `${storedToken}`;
         }
     }, []);
+      useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+      axios.defaults.headers.common['Authorization'] = token;
+    } else {
+      localStorage.removeItem('token');
+      delete axios.defaults.headers.common['Authorization'];
+    }
+  }, [token]);
 
+  useEffect(() => {
+    if (globalName) {
+      localStorage.setItem('globalName', globalName);
+    } else {
+      localStorage.removeItem('globalName');
+    }
+  }, [globalName]);
     useEffect(() => {
         fetchBlogs();
     }, []);

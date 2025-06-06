@@ -3,7 +3,7 @@ import { useAppContext } from '../context/AppContext';
 import { assets } from '../assets/assets';
 
 const Navbar = () => {
-  const { navigate, token ,globalName } = useAppContext();
+  const { navigate, token ,globalName} = useAppContext();
 
   return (
     <div className="flex justify-between items-center py-5 mx-8 sm:mx-20 xl:mx-32">

@@ -7,10 +7,10 @@ const Layout = () => {
     const {axios,setToken,navigate,setGlobalName}=useAppContext(); 
     const logout=()=>{
         localStorage.removeItem('token')
+        localStorage.removeItem('globalName')
         axios.defaults.headers.common['Authorization']=null;
         setToken(null)
         setToken('')
-        setGlobalName('')
         navigate('/')
         
     } 
