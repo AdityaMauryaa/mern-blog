@@ -1,7 +1,7 @@
 import React from 'react';
 import { assets } from '../../assets/assets';
 import { useAppContext } from '../../context/AppContext';
-
+import toast from 'react-hot-toast';
 const CommentsTableItem = ({ comment, fetchComments }) => {
     const {axios}=useAppContext();
   const { blog, createdAt, _id, isApproved, content, name } = comment; 
@@ -11,7 +11,7 @@ const CommentsTableItem = ({ comment, fetchComments }) => {
     try {
         const {data}=await axios.post('api/admin/approve-comment',{id:_id})
         if(data.success){
-            await fetchComments();
+             fetchComments();
             toast.success(data.message)
         }else{
             toast.error(data.message)
@@ -28,9 +28,9 @@ const CommentsTableItem = ({ comment, fetchComments }) => {
         if(!confirm){
             return ;
         }
-        const {data}=axios.post('api/admin/delete-comment',{id:_id})
+        const {data}=await axios.post('api/admin/delete-comment',{id:_id})
         if(data.success){
-            await fetchComments();
+             fetchComments();
             toast.success(data.message)
         }else toast.error(data.message)
     } catch (error) {

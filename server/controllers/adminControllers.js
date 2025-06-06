@@ -5,10 +5,7 @@ import Comment from '../models/comment.js'
 export const adminLogin = async (req, res) => {
     try{
         const {email, password} = req.body;
-    console.log("ENV_EMAIL:", process.env.ADMIN_EMAIL);
-    console.log("ENV_PASSWORD:", process.env.ADMIN_PASSWORD);
-    console.log("REQ_EMAIL:", email);
-    console.log("REQ_PASSWORD:", password);
+
         if(!email || !password){
             return res.status(400).json({success:false,message: "Please provide all fields"});
         }else if(email !== process.env.ADMIN_EMAIL || password !==process.env.ADMIN_PASSWORD){
@@ -67,7 +64,7 @@ export const deleteCommentById= async(req,res)=>{
     try {
         const {id}=req.body;
         await Comment.findByIdAndDelete(id);
-        res.json({succes:true,message:"Comment deleted successfully"});
+        res.json({success:true,message:"Comment deleted successfully"});
     } catch (error) {
           res.json({success:false,error:error.message})
     }
@@ -76,7 +73,7 @@ export const approveCommentById= async(req,res)=>{
     try {
         const {id}=req.body;
         await Comment.findByIdAndUpdate(id,{isApproved:true});
-        res.json({succes:true,message:"Comment approved successfully"});
+        res.json({success:true,message:"Comment approved successfully"});
     } catch (error) {
          res.json({success:false,error:error.message})        
     }

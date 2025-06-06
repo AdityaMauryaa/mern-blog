@@ -31,9 +31,16 @@ import dashboard_icon_1 from './dashboard_icon_1.svg'
 import dashboard_icon_2 from './dashboard_icon_2.svg'
 import dashboard_icon_3 from './dashboard_icon_3.svg'
 import dashboard_icon_4 from './dashboard_icon_4.svg'
+import mail_icon from './mail_icon.svg'
+import person_icon from './person_icon.svg'
+import lock_icon from './lock_icon.svg'
+
 
 
 export const assets = {
+    mail_icon,
+    person_icon,
+    lock_icon,
     facebook_icon,
     googleplus_icon,
     twitter_icon,

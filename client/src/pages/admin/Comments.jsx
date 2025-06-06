@@ -63,7 +63,7 @@ const Comments = () => {
             {comments
   .filter(comment => filter === 'Approved' ? comment.isApproved === true : comment.isApproved === false)
   .map(comment => (
-    <CommentsTableItem key={comment._id} comment={comment} fetchcomments={fetchComments} />
+    <CommentsTableItem key={comment._id} comment={comment} fetchComments={fetchComments} />
   ))
 
             }

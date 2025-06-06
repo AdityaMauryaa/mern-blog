@@ -8,6 +8,7 @@
   display: none;
 }
 @theme{
+
   --color-primary: red;
   --color-primary: oklch(0.51 0.23 277.54);
 }

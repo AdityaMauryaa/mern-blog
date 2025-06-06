@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import {parse} from 'marked'
 import 'highlight.js/styles/github.css';
 const AddBlog = () => {
-  const {axios}=useAppContext();
+  const {axios,fetchBlogs}=useAppContext();
   const [isAdding,setIsAdding]=useState(false);
   const [loading,setLoading]=useState(false);
   const [image , setImage]=useState(false);
@@ -54,7 +54,9 @@ const onSubmitHandler=async (e)=>{
 
     const {data}=await axios.post('/api/blog/add',formData);
     if(data.success){
+      
       toast.success(data.message)
+      fetchBlogs()
       setImage(false)
       setTitle('')
       quillRef.current.root.innerHTML=''

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAppContext } from '../../context/AppContext';
 const Login = () => {
-  const {axios,setToken}=useAppContext();
+  const {axios,setToken,navigate}=useAppContext();
   const  [email, setEmail] = useState('');
   const  [password, setPassword] = useState('');
   const handleSubmit = async (e) => {
@@ -15,6 +15,7 @@ const Login = () => {
         setToken(data.token)
         localStorage.setItem('token',data.token)
         axios.defaults.headers.common['Authorization']=data.token;
+        navigate('/admin')
       }
       else{
         toast.error(data.message)
@@ -24,39 +25,54 @@ const Login = () => {
     }
   }
   return (
-    <div className='flex items-center justify-center h-screen'>
-      <div className='w-full max-w-sm p-6 max-md:m-6 border border-primary/30
-        shadow-xl shadow-primary/30 rounded-lg'>
+    <div className={'flex items-center justify-center h-screen bg-gradient-to-br from-indigo-900 to bg-red-300' }>
+      <div className='w-full max-w-sm p-6 max-md:m-6 border bg-gray-900 border-primary/30 shadow-xl shadow-primary/30 rounded-lg'>
           <div className='flex flex-col items-center justify-center'> 
             <div className='w-full py-6 text-center'>
-              <h1 className='text-4xl font-bold mb-2'>
-                <span className='text-primary/70'>Admin</span> Login</h1>
-              <p className='font-light'>Enter your credentials to access the admin panel</p>
+              <h1 className='text-4xl font-bold mb-2 text-white'>
+                Login</h1>
+              <p className='font-light text-indigo-400'>Enter your credentials to access the admin panel</p>
             </div>
-
             <form onSubmit={handleSubmit} className='w-full sm:max-w-md text-gray-600 '>
-              <div className='flex flex-col mb-2'>
-                <label htmlFor="">Email</label>
-                <input 
+              <div className='flex items-center mb-4 gap-3 text-white rounded-2xl bg-[#333A5C] px-4 py-2'>
+              <img src={assets.mail_icon} alt="email icon" className="w-5 h-5" />
+              <input 
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                type="email" required placeholder='Enter your email'
-                className='border-b-2 border-gray-300 p-2 outline-none' />
+                type="email"
+                required
+                placeholder='Enter your email'
+                className='bg-transparent flex-1 outline-none text-white placeholder:text-gray-300'
+              />
+            </div>
+
+
+              <div className='flex items-center mb-4 gap-3 text-white rounded-2xl bg-[#333A5C] px-4 py-2'>
+                <img src={assets.lock_icon} alt="password icon" className="w-5 h-5" />
+                <input 
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  type="password"
+                  required
+                  placeholder='Enter your password'
+                  className='bg-transparent flex-1 outline-none text-white placeholder:text-gray-300'
+                />
               </div>
 
-              <div className='flex flex-col mb-2'>
-                <label htmlFor="">Password</label>
-                <input 
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                type="password" required placeholder='Enter your password'
-                className='border-b-2 border-gray-300 p-2 outline-none' />
-              </div>
-              <button type='submit' className='w-full py-1 font-medium bg-primary/80
-               text-white rounded cursor-pointer
-               hover:text-primary/80 transition-all 
+              <button type='submit' className='w-full py-1 font-medium bg-gradient-to-r from-indigo-500 to-indigo-900
+               text-white rounded-full cursor-pointer hover:scale-95
                '>Login</button>
             </form>
+             <div className='mt-4 text-sm'>
+            <p className='text-gray-400'>Don't have an account?
+              <span
+                className='text-blue-500 font-semibold cursor-pointer ml-1 underline'
+                onClick={() => navigate('/admin/register')}
+              >
+                Register
+              </span> here
+            </p>
+          </div>
           </div>
       </div>
     </div>

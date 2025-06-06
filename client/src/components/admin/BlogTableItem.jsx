@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 const BlogTableItem =  ({blog,fetchBlogs,index}) => {
     const {axios}=useAppContext();
+    const context =useAppContext();
     const deleteBlog=async ()=>{
         const confirm=window.confirm("Are you sure, you want to delete this blog?")
         if(!confirm){
@@ -14,6 +15,7 @@ const BlogTableItem =  ({blog,fetchBlogs,index}) => {
             if(data.success){
                 toast.success(data.message)
                 await fetchBlogs()
+                context.fetchBlogs();
             }else{
                 toast.error(data.message)
             }
@@ -27,6 +29,7 @@ const BlogTableItem =  ({blog,fetchBlogs,index}) => {
         if(data.success){
                 toast.success(data.message)
                 await fetchBlogs()
+                context.fetchBlogs();
             }else{
                 toast.error(data.message)
             }}

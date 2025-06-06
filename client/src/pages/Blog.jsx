@@ -46,6 +46,7 @@ const Blog = () => {
       const {data}=await axios.post(`/api/blog/add-comment`,{blog:id,name,content})
       if(data.success){
         toast.success(data.message)
+        fetchComments()
         setName('')
         setContent('')
       }

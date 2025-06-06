@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from "framer-motion";
-
 import { useState } from 'react'
 import BlogCard from './BlogCard'
 import { blog_data, blogCategories } from '../assets/assets'

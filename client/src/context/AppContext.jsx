@@ -12,7 +12,6 @@ export const AppProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [blogs, setBlogs] = useState([]);
     const [input, setInput] = useState('');
-    const [refetch, setRefetch] = useState(false);
 
     const fetchBlogs = async () => {
         try {
@@ -44,8 +43,8 @@ export const AppProvider = ({ children }) => {
         setBlogs,
         input,
         setInput,
+        fetchBlogs,
     };
-
     return (
         <AppContext.Provider value={value}>
             {children}

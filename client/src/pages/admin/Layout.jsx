@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { assets } from '../../assets/assets'
 import {Outlet } from 'react-router-dom'
 import Sidebar from '../../components/admin/Sidebar';
@@ -9,9 +9,11 @@ const Layout = () => {
         localStorage.removeItem('token')
         axios.defaults.headers.common['Authorization']=null;
         setToken(null)
-        setToken('/')
+        setToken('')
         navigate('/')
+        
     } 
+  
   return (
     <>
         <div className='flex items-center justify-between py-2 h-[70px] px-4 sm:px-12 border-b border-gray-200'>
