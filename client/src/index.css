@@ -3,14 +3,13 @@
 *{
   font-family: "Outfit", sans-serif;
 }
-
 ::-webkit-scrollbar{
   display: none;
 }
 @theme{
 
-  --color-primary: red;
   --color-primary: oklch(0.51 0.23 277.54);
+  --color-primary: oklch(0.48 0.18 26.81);
 }
 .rich-text { font-size: 15px;  }
 

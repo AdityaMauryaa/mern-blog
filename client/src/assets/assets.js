@@ -34,11 +34,12 @@ import dashboard_icon_4 from './dashboard_icon_4.svg'
 import mail_icon from './mail_icon.svg'
 import person_icon from './person_icon.svg'
 import lock_icon from './lock_icon.svg'
-
+import logo2 from './logo2.png'
 
 
 export const assets = {
     mail_icon,
+    logo2,
     person_icon,
     lock_icon,
     facebook_icon,
